@@ -1,0 +1,23 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: checkout repo
+      uses: actions/checkout@v3
+
+    - name: run hello.sh test script
+      run: |
+        chmod +x hello.sh
+        ./hello.sh
+    - name: build docker image
+      run: |
+        docker build -t mysecimage .
+    - name: run docker image
+      run: docker run mysecimage
