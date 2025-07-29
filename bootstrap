@@ -1,0 +1,15 @@
+#!/bin/sh
+# Required shebang
+set -euo pipefail
+
+# Log to CloudWatch
+echo "Lambda function invoked" >&2
+
+# Optional: read the event from Lambda (stdin)
+read EVENT
+
+# Execute your main script
+/hello.sh
+
+# Send a response to Lambda
+echo '{"statusCode":200,"body":"Hello from Lambda"}'
